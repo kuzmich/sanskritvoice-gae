@@ -8,6 +8,8 @@
 </%block>
 
 ##<%block name="body">
+    <div id="wplayer" class="wplayer"></div>
+
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
@@ -30,7 +32,6 @@
       </div>
 
       <div class="row">
-
         <div class="col-sm-8 blog-main">
           ${next.body()}
 
@@ -40,7 +41,6 @@
               <li><a href="#">Еще</a></li>
             </ul>
           </nav>
-
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">

@@ -1,17 +1,31 @@
 <%inherit file="base.mako"/>
 
-<%block name="body_end">
-    ##${parent.head()}
-    <script type="text/javascript" src="http://scmplayer.net/script.js" data-config="{'skin':'skins/aquaBlue/skin.css','volume':50,'autoplay':false,'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,}"></script>
+<%block name="head">
+    ${parent.head()}
+    <style>
+        .wplayer {
+            width: 100%;
+        }
+    </style>
+</%block>
 
+<%block name="body_end">
+    <script src="${request.static_path('sv:static/wimpy/wimpy.js')}"></script>
     <script>
         $(document).ready(function() {
-            $('button').on('click', function () {
+            var wplayer = new wimpyPlayer({
+                target: "wplayer",
+                media: "none",
+                skin: "${request.static_path('sv:static/wimpy/wimpy.skins/001.tsv')}",
+                responsive : 1
+            });
+
+            $('div.blog-post button').on('click', function () {
                 var url = $(this).data('url');
                 var title = $(this).data('title');
-                SCM.play({title: title, url: url});
+                wplayer.play({file: url, title: title, kind: "mp3"});
             });
-        })
+        });
     </script>
 </%block>
 
