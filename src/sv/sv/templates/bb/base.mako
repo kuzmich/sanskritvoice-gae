@@ -4,7 +4,7 @@
 <%block name="title">Голос санскрита</%block>
 
 <%block name="head">
-    <link href="${request.static_path('sv:static/blog.css')}" rel="stylesheet">
+    <link href="${request.static_path('sv:static/css/blog.css')}" rel="stylesheet">
 </%block>
 
 ##<%block name="body">
