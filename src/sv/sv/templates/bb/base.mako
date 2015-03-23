@@ -8,8 +8,6 @@
 </%block>
 
 ##<%block name="body">
-    <div id="wplayer" class="wplayer"></div>
-
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
@@ -78,4 +76,3 @@
       </p>
     </footer>
 ##</%block>
-

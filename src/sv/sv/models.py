@@ -28,6 +28,10 @@ class Record(ndb.Model):
         return self.key.id()
 
     @property
+    def audio(self):
+        return blobstore.BlobInfo.get(self.audio_key)
+
+    @property
     def bhajan(self):
         return self.bhajan_key.get()
 
