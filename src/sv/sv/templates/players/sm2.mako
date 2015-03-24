@@ -80,6 +80,19 @@
                 link.text(title);
                 link[0].click();
             });
+
+            $('p.blog-post-meta a:nth-child(1)').on('click', function(e) {
+                var link = $(this);
+                var title = link.data('alttext');
+                link.data('alttext', link.text());
+                link.text(title);
+
+                var p = $(this).parent('p');
+                p.nextAll('p.b-text').toggle();
+                p.nextAll('p.b-accords').toggle();
+                e.preventDefault();
+            });
+
         })
     </script>
   <%doc>

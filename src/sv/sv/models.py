@@ -4,6 +4,7 @@ from google.appengine.ext import ndb, blobstore
 class Bhajan(ndb.Model):
     title = ndb.StringProperty()
     text = ndb.TextProperty()
+    accords = ndb.TextProperty()
 
     @property
     def id(self):

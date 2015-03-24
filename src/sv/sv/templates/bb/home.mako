@@ -16,8 +16,9 @@
           % for b in bhajans:
             <div class="blog-post">
               <h2 class="blog-post-title">${b.title}</h2>
-              <p class="blog-post-meta"><a href="#">Аккорды</a></p>
-              <p>${b.text.replace('\n', '<br>') if b.text else '' | n}</p>
+              <p class="blog-post-meta"><a href="#" data-alttext="Только текст">Аккорды</a></p>
+              <p class="b-text">${b.text.replace('\n', '<br>') if b.text else '' | n}</p>
+              <p class="b-accords" style="display: none">${b.accords.replace('\n', '<br>') if b.accords else '' | n}</p>
               % for r in b.records:
                 <button type="button" class="btn btn-default"
                         data-url="${request.route_url('download', blob_key=r.audio_key)}"

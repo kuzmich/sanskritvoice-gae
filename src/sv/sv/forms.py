@@ -112,6 +112,10 @@ class Bhajan(colander.MappingSchema):
                                validator=colander.Length(10),
                                widget=deform.widget.TextAreaWidget(rows=7),
                                title=u'Текст')
+    accords = colander.SchemaNode(colander.String(),
+                                  validator=colander.Length(10),
+                                  widget=deform.widget.TextAreaWidget(rows=7),
+                                  title=u'Аккорды')
 
 class Record(colander.MappingSchema):
     bhajan = colander.SchemaNode(colander.String(),
