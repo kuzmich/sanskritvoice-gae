@@ -23,10 +23,7 @@ def main(global_config, **settings):
     config.add_static_view('static2', 'deform:static')
 
     config.add_route('home', '/')
-    config.add_route('add', '/add')
-    config.add_route('done', '/done')
     config.add_route('download', '/d/{blob_key}.mp3')
-    config.add_route('play', '/play')
 
     config.include(admin_urls, route_prefix='/dj')
 

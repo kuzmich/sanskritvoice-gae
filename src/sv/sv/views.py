@@ -147,17 +147,9 @@ def home(request):
     bhajans = m.Bhajan.query().fetch()
     return {'bhajans': bhajans}
 
-#@view_config(route_name='home', renderer='templates/mytemplate.pt')
-def my_view(request):
-    return {'project': 'sv'}
-
 @view_config(route_name='download')
 def download(request):
     r = Response(content_type='')
     r.headers[blobstore.BLOB_KEY_HEADER] = str(request.matchdict['blob_key'])
     r.headers['Accept-Ranges'] = 'bytes'
     return r
-
-@view_config(route_name='play', renderer='templates/play.mako')
-def play(request):
-    return {}
