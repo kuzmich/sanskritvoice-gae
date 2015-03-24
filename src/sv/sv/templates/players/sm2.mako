@@ -55,7 +55,6 @@
   </div>
 
   <!-- playlist content is mirrored here -->
-
   <div class="sm2-playlist-wrapper">
     <ul class="sm2-playlist-bd">
       ##<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>
