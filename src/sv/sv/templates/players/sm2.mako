@@ -57,8 +57,7 @@
   <!-- playlist content is mirrored here -->
   <div class="sm2-playlist-wrapper">
     <ul class="sm2-playlist-bd">
-      ##<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>
-      <li><a href=""></a></li>
+      <li><a></a></li>
     </ul>
   </div>
 
@@ -76,7 +75,7 @@
             $('button').on('click', function () {
                 var url = $(this).data('url');
                 var title = $(this).data('title');
-                var link = $('.sm2-playlist-bd a').first();
+                var link = $('ul.sm2-playlist-bd a').first();
                 link.attr('href', url);
                 link.text(title);
                 link[0].click();
