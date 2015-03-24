@@ -11,13 +11,17 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="/">Все</a>
+          <a class="blog-nav-item${' active' if request.path == '/' else ''}" href="/">Все</a>
 
           % for c in categories:
-          <a class="blog-nav-item" href="${request.route_path('category', category=c[0])}">${c[1]}</a>
+            <%
+              path = request.route_path('category', category=c[0])
+              active = (path == request.path)
+            %>
+            <a class="blog-nav-item${' active' if active else ''}" href="${path}">${c[1]}</a>
           % endfor
 
-          <a class="blog-nav-item" href="#">О сайте</a>
+          <a class="blog-nav-item" href="/about">О сайте</a>
         </nav>
       </div>
     </div>
