@@ -8,6 +8,7 @@ from deform.widget import filedict
 from google.appengine.ext import blobstore
 
 from . import models as m
+from .const import CATEGORIES
 from .gae import BlobStore
 
 
@@ -108,6 +109,11 @@ class Bhajan(colander.MappingSchema):
     title = colander.SchemaNode(colander.String(),
                                 validator=colander.Length(3, 150),
                                 title=u'Название')
+    category = colander.SchemaNode(colander.String(),
+                                   validator=colander.OneOf([x[0] for x in CATEGORIES]),
+                                   missing=u'',
+                                   widget=deform.widget.SelectWidget(values=CATEGORIES),
+                                   title=u'Категория')
     text = colander.SchemaNode(colander.String(),
                                validator=colander.Length(10),
                                widget=deform.widget.TextAreaWidget(rows=7),

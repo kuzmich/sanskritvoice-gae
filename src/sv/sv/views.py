@@ -4,12 +4,13 @@ import logging
 import deform
 from google.appengine.ext import blobstore, ndb
 
-from pyramid.httpexceptions import HTTPFound
+from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 from pyramid.response import Response
 from pyramid.view import view_config
 
 from . import models as m
 from . import forms as f
+from .const import CATEGORIES
 
 
 logger = logging.getLogger(__name__) 
@@ -145,7 +146,18 @@ def edit_record(request):
 @view_config(route_name='home', renderer='templates/bb/home.mako')
 def home(request):
     bhajans = m.Bhajan.query().fetch()
-    return {'bhajans': bhajans}
+    return dict(bhajans=bhajans,
+                categories=CATEGORIES[1:])
+
+@view_config(route_name='category', renderer='templates/bb/home.mako')
+def category(request):
+    category = request.matchdict['category']
+    if category not in [c[0] for c in CATEGORIES[1:]]:
+        return HTTPNotFound()
+
+    bhajans = m.Bhajan.query(m.Bhajan.category == category).fetch()
+    return dict(bhajans=bhajans,
+                categories=CATEGORIES[1:])
 
 @view_config(route_name='download')
 def download(request):

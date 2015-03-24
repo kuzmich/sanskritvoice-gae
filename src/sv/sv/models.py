@@ -5,6 +5,7 @@ class Bhajan(ndb.Model):
     title = ndb.StringProperty()
     text = ndb.TextProperty()
     accords = ndb.TextProperty()
+    category=ndb.StringProperty()
 
     @property
     def id(self):

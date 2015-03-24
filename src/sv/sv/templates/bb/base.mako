@@ -11,12 +11,12 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Все</a>
-          <a class="blog-nav-item" href="#">Ганеша</a>
-          <a class="blog-nav-item" href="#">Шива</a>
-          <a class="blog-nav-item" href="#">Гуру</a>
-          <a class="blog-nav-item" href="#">Деви</a>
-          <a class="blog-nav-item" href="#">Другие</a>
+          <a class="blog-nav-item active" href="/">Все</a>
+
+          % for c in categories:
+          <a class="blog-nav-item" href="${request.route_path('category', category=c[0])}">${c[1]}</a>
+          % endfor
+
           <a class="blog-nav-item" href="#">О сайте</a>
         </nav>
       </div>
