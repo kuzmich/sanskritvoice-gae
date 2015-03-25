@@ -72,13 +72,26 @@
     <script src="${request.static_path('sv:static/sm2/bar-ui/script/bar-ui.js')}"></script>
     <script>
         $(document).ready(function() {
-            $('button').on('click', function () {
-                var url = $(this).data('url');
-                var title = $(this).data('title');
-                var link = $('ul.sm2-playlist-bd a').first();
-                link.attr('href', url);
-                link.text(title);
-                link[0].click();
+            $('a.sm2_link').on('click', function (e) {
+                var a = $(this);
+                var url = a.data('url');
+                var title = a.data('title');
+
+                var playing = !a.hasClass('sm2_playing');
+                if (playing) {
+                    $('a.sm2_link').removeClass('sm2_playing');
+                    a.addClass('sm2_playing');
+
+                    var link = $('ul.sm2-playlist-bd a').first();
+                    link.attr('href', url);
+                    link.text(title);
+                    link[0].click();
+                }
+                else {
+                    a.removeClass('sm2_playing');
+                    $('a.play-pause')[0].click();
+                }
+                e.preventDefault();
             });
 
             $('p.blog-post-meta a:nth-child(1)').on('click', function(e) {

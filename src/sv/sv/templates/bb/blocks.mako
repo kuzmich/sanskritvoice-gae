@@ -9,13 +9,22 @@
               </p>
               <p class="b-text">${b.text.replace('\n', '<br>') if b.text else '' | n}</p>
               <p class="b-accords" style="display: none">${b.accords.replace('\n', '<br>') if b.accords else '' | n}</p>
-              % for r in b.records:
-                <button type="button" class="btn btn-default"
-                        data-url="${request.route_url('download', blob_key=r.audio_key)}"
-                        data-title="${r.artist} - ${b.title}"
-                        data-type="${r.audio.content_type}">
-                  <span class="glyphicon glyphicon-play" aria-hidden="true"></span> ${r.artist}
-                </button>
-              % endfor
+              % if b.records:
+                <ul class="graphic">
+                % for r in b.records:
+                  <li><a href="#" class="sm2_link"
+                         data-url="${request.route_url('download', blob_key=r.audio_key)}"
+                         data-title="${r.artist} - ${b.title}">${r.artist}</a></li>
+                  <%doc>
+                  <button type="button" class="btn btn-default"
+                          data-url="${request.route_url('download', blob_key=r.audio_key)}"
+                          data-title="${r.artist} - ${b.title}"
+                          data-type="${r.audio.content_type}">
+                    <span class="glyphicon glyphicon-play" aria-hidden="true"></span> ${r.artist}
+                  </button>
+                  </%doc>
+                % endfor
+                </ul>
+              % endif
             </div>
 </%def>
