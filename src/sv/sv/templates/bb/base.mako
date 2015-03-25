@@ -6,7 +6,6 @@
 
 <%block name="head">
     <link href="${request.static_path('sv:static/css/blog.css')}" rel="stylesheet">
-    <link href="${request.static_path('sv:static/sm2/mp3-links/css/inlineplayer.css')}" rel="stylesheet">
     ${player.head()}
 </%block>
 

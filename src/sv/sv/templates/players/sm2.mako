@@ -1,99 +1,38 @@
 <%block name="head">
-    <link rel="stylesheet" href="${request.static_path('sv:static/sm2/bar-ui/css/bar-ui.css')}">
+    <link rel="stylesheet" href="${request.static_path('sv:static/sm2/page-player/css/page-player.css')}">
+    <style>
+      ul.playlist li {
+        font-size: 100%;
+      }
+      ul.playlist li .timing {
+        font-size: 60%;
+        height: auto;
+      }
+      ul.playlist li .controls .statusbar {
+        height: 0.7em;
+      }
+    </style>
 </%block>
 
 <%block name="body_start">
-<div class="sm2-bar-ui compact full-width">
-
- <div class="bd sm2-main-controls">
-  <div class="sm2-inline-texture"></div>
-  <div class="sm2-inline-gradient"></div>
-
-  <div class="sm2-inline-element sm2-button-element">
-   <div class="sm2-button-bd">
-    <a href="#play" class="sm2-inline-button play-pause">Play / pause</a>
-   </div>
-  </div>
-
-  <div class="sm2-inline-element sm2-inline-status">
-
-   <div class="sm2-playlist">
-    <div class="sm2-playlist-target">
-     <!-- playlist <ul> + <li> markup will be injected here -->
-     <!-- if you want default / non-JS content, you can put that here. -->
-     <noscript><p>JavaScript is required.</p></noscript>
+    <div id="sm2-container">
+      <!-- SM2 flash movie goes here -->
     </div>
-   </div>
-
-   <div class="sm2-progress">
-    <div class="sm2-row">
-    <div class="sm2-inline-time">0:00</div>
-     <div class="sm2-progress-bd">
-      <div class="sm2-progress-track">
-       <div class="sm2-progress-bar"></div>
-       <div class="sm2-progress-ball"><div class="icon-overlay"></div></div>
-      </div>
-     </div>
-     <div class="sm2-inline-duration">0:00</div>
-    </div>
-   </div>
-
-  </div>
-
-  <div class="sm2-inline-element sm2-button-element sm2-volume">
-   <div class="sm2-button-bd">
-    <span class="sm2-inline-button sm2-volume-control volume-shade"></span>
-    <a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>
-   </div>
-  </div>
- </div>
-
- <div class="bd sm2-playlist-drawer sm2-element">
-
-  <div class="sm2-inline-texture">
-   <div class="sm2-box-shadow"></div>
-  </div>
-
-  <!-- playlist content is mirrored here -->
-  <div class="sm2-playlist-wrapper">
-    <ul class="sm2-playlist-bd">
-      <li><a></a></li>
-    </ul>
-  </div>
-
- </div>
-
-</div>
 </%block>
-
 
 <%block name="body_end">
     <script src="${request.static_path('sv:static/sm2/script/soundmanager2.js')}"></script>
-    <script src="${request.static_path('sv:static/sm2/bar-ui/script/bar-ui.js')}"></script>
     <script>
+        soundManager.setup({
+            url: '${request.static_path("sv:static/sm2/swf/")}',
+            html5PollingInterval: 50
+            // use soundmanager2-nodebug-jsmin.js, or disable debug mode (enabled by default) after development/testing
+            // debugMode: false,
+        });
+        var PP_CONFIG = {
+            playNext: false
+        }
         $(document).ready(function() {
-            $('a.sm2_link').on('click', function (e) {
-                var a = $(this);
-                var url = a.data('url');
-                var title = a.data('title');
-
-                var playing = !a.hasClass('sm2_playing');
-                if (playing) {
-                    $('a.sm2_link').removeClass('sm2_playing');
-                    a.addClass('sm2_playing');
-
-                    var link = $('ul.sm2-playlist-bd a').first();
-                    link.attr('href', url);
-                    link.text(title);
-                    link[0].click();
-                }
-                else {
-                    a.removeClass('sm2_playing');
-                    $('a.play-pause')[0].click();
-                }
-                e.preventDefault();
-            });
-
             $('p.blog-post-meta a:nth-child(1)').on('click', function(e) {
                 var link = $(this);
                 var title = link.data('alttext');
@@ -105,17 +44,8 @@
                 p.nextAll('p.b-accords').toggle();
                 e.preventDefault();
             });
-
         })
     </script>
-  <%doc>
-    <script>
-        soundManager.setup({
-            url: '${request.static_path("sv:static/sm2/swf/")}'
-            // use soundmanager2-nodebug-jsmin.js, or disable debug mode (enabled by default) after development/testing
-            // debugMode: false,
-        });
-    </script>
-  </%doc>
+    <script src="${request.static_path('sv:static/sm2/page-player/script/page-player.js')}"></script>
 </%block>
 
