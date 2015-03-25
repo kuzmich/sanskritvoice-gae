@@ -145,11 +145,11 @@ def edit_record(request):
 
 @view_config(route_name='home', renderer='templates/bb/home.mako')
 def home(request):
-    bhajans = m.Bhajan.query().fetch()
+    bhajans = m.Bhajan.query().order(m.Bhajan.title).fetch()
     return dict(bhajans=bhajans,
                 categories=CATEGORIES[1:])
 
-@view_config(route_name='category', renderer='templates/bb/home.mako')
+@view_config(route_name='category', renderer='templates/bb/categories.mako')
 def category(request):
     category = request.matchdict['category']
     if category not in [c[0] for c in CATEGORIES[1:]]:
@@ -157,6 +157,16 @@ def category(request):
 
     bhajans = m.Bhajan.query(m.Bhajan.category == category).fetch()
     return dict(bhajans=bhajans,
+                categories=CATEGORIES[1:])
+
+@view_config(route_name='bhajan', renderer='templates/bb/bhajan.mako')
+def bhajan(request):
+    bid = nid(request.matchdict['bid'])
+    bhajan = m.Bhajan.get_by_id(bid)
+    if not bhajan:
+        return HTTPNotFound()
+
+    return dict(bhajan=bhajan,
                 categories=CATEGORIES[1:])
 
 @view_config(route_name='download')

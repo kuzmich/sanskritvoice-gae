@@ -24,6 +24,7 @@ def main(global_config, **settings):
 
     config.add_route('home', '/')
     config.add_route('category', '/c/{category}')
+    config.add_route('bhajan', '/b/{bid}')
     config.add_route('download', '/d/{blob_key}.mp3')
 
     config.include(admin_urls, route_prefix='/dj')
