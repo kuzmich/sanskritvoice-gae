@@ -28,13 +28,14 @@
 
     <div class="container">
 
-      <div class="blog-header">
-        <h1 class="blog-title">Голос санскрита</h1>
-        <p class="lead blog-description">Баджаны, которые <a href="http://artofliving.org">мы</a> поем</p>
-      </div>
-
       <div class="row">
-        <div class="col-sm-8 blog-main">
+        ##<div class="col-sm-8 blog-main">
+        <div class="col-md-6 blog-main">
+          <div class="blog-header">
+            <h1 class="blog-title">Голос санскрита</h1>
+            <p class="lead blog-description">Баджаны, которые <a href="http://artofliving.org">мы</a> поем</p>
+          </div>
+
           ${next.body()}
 
           <nav>
@@ -45,6 +46,7 @@
           </nav>
         </div><!-- /.blog-main -->
 
+        <%doc>
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
@@ -68,15 +70,13 @@
             </ol>
           </div>
         </div><!-- /.blog-sidebar -->
+        </%doc>
 
       </div><!-- /.row -->
 
     </div><!-- /.container -->
 
     <footer class="blog-footer">
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-      <p>
-        <a href="#">Back to top</a>
-      </p>
+      <p><a href="https://github.com/kuzmich/sanskritvoice">Исходный код</p>
     </footer>
 ##</%block>
